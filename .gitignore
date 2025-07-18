@@ -1,0 +1,6 @@
+/verif/*.mpf
+/verif/data.ver
+/verif/instruction.ver
+/verif/vsim.wlf
+/verif/work
+/verif/*.mti
