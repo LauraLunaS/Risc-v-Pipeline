@@ -22,9 +22,9 @@ module alu#(
             4'b0010:        // ADD, ADDI
                     ALUResult = SrcA + SrcB;
             4'b0011:        // SUB
-		                ALUResult = SrcA - SrcB;
-	          4'b0100:        //XOR
-		                ALUResult = SrcA ^ SrcB;
+		    ALUResult = SrcA - SrcB;
+	    4'b0100:        //XOR
+		    ALUResult = SrcA ^ SrcB;
             4'b1000:        // Equal
                     ALUResult = (SrcA == SrcB) ? 1 : 0;
             default:
