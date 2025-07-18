@@ -1,1 +1,1 @@
-sll x5,x1,x2
+srl x5,x1,x2
