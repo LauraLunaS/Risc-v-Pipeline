@@ -33,6 +33,8 @@ module alu#(
                     ALUResult = (SrcA < SrcB)?1:0;
             4'b1000:        // Equal
                     ALUResult = (SrcA == SrcB) ? 1 : 0;
+            4'b1001:        // SRAI
+                    ALUResult = SrcA >>> SrcB[4:0];
             default:
                     ALUResult = 0;
             endcase
