@@ -1,1 +1,3 @@
-srl x5,x1,x2
+addi x7,x0,2
+slli x8,x7,4
+srli x9,x8,2 
