@@ -1,6 +1,7 @@
 """
 Author: Nathalia Barbosa (@nathaliafab)
 Date: 2023-06-16
+Modified to include a 'halt' instruction.
 
 This script translates instructions from a given file into a format readable by the instruction memory.
 (It basically functions as an assembler.)
@@ -14,6 +15,7 @@ The instructions MUST follow the following formats, with one instruction per lin
 <instruction> <register>,<register>,<immediate>
 <instruction> <register>,<offset>(<register>)
 <instruction> <register>,<immediate>
+<instruction>
 
 ~ Otherwise, it won't work. ;)
 
@@ -23,6 +25,7 @@ sub x6,x6,x1
 addi x1,x0,8
 lw x9,0(x0)
 auipc x6,3
+halt
 ```
 """
 
@@ -211,6 +214,17 @@ def translate(instruction):
 
 # translates an instruction to binary (assembly to machine code)
 def translate_instruction(instruction):
+	# Clean up any leading/trailing whitespace
+	instruction = instruction.strip()
+
+	# Handle the 'halt' instruction, which is an alias for 'beq x0, x0, 0'
+	# This covers both 'halt' and 'halt x0,x0,0' by simply checking if the line starts with 'halt'
+	if instruction.lower().startswith("halt"):
+		# The machine code for beq x0, x0, 0 is 0x00000063
+		# imm[12|10:5] rs2   rs1   funct3 imm[4:1|11] opcode
+		# 0000000      00000 00000 000      00000       1100011
+		return "00000000000000000000000001100011"
+
 	instr = instruction.split(" ")[0]
 
 	rd = instruction.split(" ")[1].split(",")[0]
