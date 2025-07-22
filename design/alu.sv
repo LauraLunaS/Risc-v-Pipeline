@@ -19,7 +19,7 @@ module alu#(
                     ALUResult = SrcA & SrcB;
             4'b0001:        // OR
                     ALUResult = SrcA | SrcB;
-            4'b0010:        // ADD, ADDI
+            4'b0010:        // ADD, ADDI, JALR
                     ALUResult = SrcA + SrcB;
             4'b0011:        // SUB
 		    ALUResult = SrcA - SrcB;
@@ -41,6 +41,8 @@ module alu#(
                     ALUResult = (SrcA < SrcB) ? 1 : 0;
             4'b1100:        // BGE
                     ALUResult = (SrcA >= SrcB) ? 1 : 0;
+            4'b1101:        // JAL
+                    ALUResult = 1;
             default:
                     ALUResult = 0;
             endcase
