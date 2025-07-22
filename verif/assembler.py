@@ -228,9 +228,9 @@ def translate_instruction(instruction):
 		imm = imm[::-1]
 
 		bit20 = imm[19]
-		bit10to1 = (imm[0:9])[::-1]
+		bit10to1 = (imm[0:10])[::-1]
 		bit11 = imm[10]
-		bit19to12 = (imm[11:18])[::-1]
+		bit19to12 = (imm[11:19])[::-1]
 
 		imm = sfill((bit20 + bit10to1 + bit11 + bit19to12), 20)
 
@@ -257,10 +257,10 @@ def translate_instruction(instruction):
 		imm = sfill(sbin(imm)[0:12], 13)
 		imm = imm[::-1]
 
-		bit12 = imm[12]
-		bit10to5 = (imm[5:10])[::-1]
-		bit4to1 = (imm[1:4])[::-1]
-		bit11 = imm[11]
+		bit12 = imm[11]
+		bit10to5 = (imm[4:10])[::-1]
+		bit4to1 = (imm[0:4])[::-1]
+		bit11 = imm[10]
 
 		binary = sfill((bit12 + bit10to5), 7) + rs2 + rs1 + funct3[instr] + sfill(
 		 (bit4to1 + bit11), 5) + opcode[instr]
@@ -287,11 +287,11 @@ def translate_instruction(instruction):
 
 		imm = instruction.split(" ")[1].split(",")[1]
 		imm = imm.split("(")[0]
-		imm = sfill(sbin(imm)[0:11], 12)
+		imm = sfill(sbin(imm)[0:12], 12)
 		imm = imm[::-1]
 
-		bit11to5 = (imm[5:11])[::-1]
-		bit4to0 = (imm[0:4])[::-1]
+		bit11to5 = (imm[5:12])[::-1]
+		bit4to0 = (imm[0:5])[::-1]
 
 		binary = sfill(bit11to5, 7) + rs2 + rs1 + funct3[instr] + sfill(
 		 bit4to0, 5) + opcode[instr]
