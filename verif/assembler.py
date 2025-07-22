@@ -257,10 +257,10 @@ def translate_instruction(instruction):
 		imm = sfill(sbin(imm)[0:12], 13)
 		imm = imm[::-1]
 
-		bit12 = imm[11]
-		bit10to5 = (imm[4:10])[::-1]
-		bit4to1 = (imm[0:4])[::-1]
-		bit11 = imm[10]
+		bit12 = imm[12]
+		bit10to5 = (imm[5:10])[::-1]
+		bit4to1 = (imm[1:4])[::-1]
+		bit11 = imm[11]
 
 		binary = sfill((bit12 + bit10to5), 7) + rs2 + rs1 + funct3[instr] + sfill(
 		 (bit4to1 + bit11), 5) + opcode[instr]
